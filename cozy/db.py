@@ -1,7 +1,18 @@
 import os
 import logging
-from peewee import BaseModel, Model, CharField, IntegerField, BlobField, ForeignKeyField, FloatField, BooleanField, SqliteDatabase
+import uuid
+
+from peewee import __version__ as PeeweeVersion
+if PeeweeVersion[0] == '2':
+    from peewee import BaseModel
+    ModelBase = BaseModel
+else:
+    from peewee import ModelBase
+from peewee import Model, CharField, IntegerField, BlobField, ForeignKeyField, FloatField, BooleanField, SqliteDatabase
+from playhouse.migrate import SqliteMigrator, migrate
 from gi.repository import GLib, GdkPixbuf
+
+import cozy.tools as tools
 
 # first we get the data home and find the database if it exists
 data_dir = os.path.join(GLib.get_user_data_dir(), "cozy")
@@ -10,12 +21,12 @@ log.debug(data_dir)
 if not os.path.exists(data_dir):
     os.makedirs(data_dir)
 
-db = SqliteDatabase(os.path.join(data_dir, "cozy.db"))
+db = SqliteDatabase(os.path.join(data_dir, "cozy.db"), pragmas=[('journal_mode', 'wal')])
 
 
-class BaseModel(Model):
+class ModelBase(Model):
     """
-    The BaseModel is the base class for all db tables.
+    The ModelBase is the base class for all db tables.
     """
     class Meta:
         """
@@ -24,7 +35,7 @@ class BaseModel(Model):
         database = db
 
 
-class Book(BaseModel):
+class Book(ModelBase):
     """
     Book represents an audio book in the database.
     """
@@ -36,7 +47,7 @@ class Book(BaseModel):
     cover = BlobField(null=True)
 
 
-class Track(BaseModel):
+class Track(ModelBase):
     """
     Track represents a track from an audio book in the database.
     """
@@ -48,22 +59,36 @@ class Track(BaseModel):
     file = CharField()
     length = FloatField()
     modified = IntegerField()
+    crc32 = BooleanField(default=False)
 
 
-class Settings(BaseModel):
+class Settings(ModelBase):
     """
     Settings contains all settings that are not saved in the gschema.
     """
     path = CharField()
     first_start = BooleanField(default=True)
     last_played_book = ForeignKeyField(Book, null=True)
+    version = IntegerField(default=1)
+
+
+class ArtworkCache(ModelBase):
+    """
+    The artwork cache matches uuids for scaled image files to book objects.
+    """
+    book = ForeignKeyField(Book)
+    uuid = CharField()
 
 
 def init_db():
     db.connect()
     # Create tables only when not already present
     #                                           |
-    db.create_tables([Track, Book, Settings], True)
+    if PeeweeVersion[0] == '2':
+        db.create_tables([Track, Book, Settings, ArtworkCache], True)
+    else:
+        db.create_tables([Track, Book, Settings, ArtworkCache])
+    update_db()
 
     if (Settings.select().count() == 0):
         Settings.create(path="", last_played_book=None)
@@ -120,62 +145,8 @@ def clean_db():
     q.execute()
     q = Book.delete()
     q.execute()
-
-
-def seconds_to_str(seconds):
-    """
-    Converts seconds to a string with the following apperance:
-    hh:mm:ss
-
-    :param seconds: The seconds as float
-    """
-    m, s = divmod(seconds, 60)
-    h, m = divmod(m, 60)
-
-    if (h > 0):
-        result = "%d:%02d:%02d" % (h, m, s)
-    elif (m > 0):
-        result = "%02d:%02d" % (m, s)
-    else:
-        result = "00:%02d" % (s)
-
-    return result
-
-
-def get_cover_pixbuf(book, size=0):
-    """
-    Get the cover from a given book and create a pixbuf object from it.
-    :param book: The book object
-    :param size: The size of the bigger side in pixels
-    :return: pixbuf object containing the cover
-    """
-    pixbuf = None
-
-    if book is not None and book.cover is not None:
-        try:
-            loader = GdkPixbuf.PixbufLoader.new()
-            loader.write(book.cover)
-            loader.close()
-            pixbuf = loader.get_pixbuf()
-        except Exception as e:
-            log.warning("Could not get cover for book " + book.name)
-            log.debug(e)
-        
-    if pixbuf is None:
-        pixbuf = GdkPixbuf.Pixbuf.new_from_resource(
-            "/de/geigi/cozy/blank_album.png")
-
-    if size > 0:
-        if pixbuf.get_height() > pixbuf.get_width():
-            width = int(pixbuf.get_width() / (pixbuf.get_height() / size))
-            pixbuf = pixbuf.scale_simple(
-                width, size, GdkPixbuf.InterpType.BILINEAR)
-        else:
-            height = int(pixbuf.get_height() / (pixbuf.get_width() / size))
-            pixbuf = pixbuf.scale_simple(
-                size, height, GdkPixbuf.InterpType.BILINEAR)
-
-    return pixbuf
+    q = ArtworkCache.delete()
+    q.execute()
 
 
 def get_track_for_playback(book):
@@ -232,3 +203,85 @@ def search_tracks(search_string):
     :return: tracks matching the substring
     """
     return Track.select(Track.name).where(Track.name.contains(search_string)).order_by(Track.name)
+
+
+def update_db_1():
+    """
+    Update database to v1.
+    """
+    migrator = SqliteMigrator(db)
+
+    version = IntegerField(default=1)
+    crc32 = BooleanField(default=False)
+
+    migrate(
+        migrator.add_column('settings', 'version', version),
+        migrator.add_column('track', 'crc32', crc32),
+    )
+
+
+def update_db():
+    """
+    Updates the database if not already done.
+    """
+    try:
+        next(c for c in db.get_columns("settings") if c.name == "version")
+    except StopIteration as e:
+        update_db_1()
+        
+
+# thanks to oleg-krv
+def get_book_duration(book):
+    """
+    Get the duration of a book in seconds.
+    :param book:
+    :return: duration of the book
+    """
+    duration = 0
+    for track in tracks(book):
+        duration += track.length
+    
+    return duration
+
+
+def get_book_progress(book, include_current=True):
+    """
+    Get the progress of a book in seconds.
+    :param book:
+    :param include_current: Include the progress of the current track
+    :return: current progress of the book
+    """
+    progress = 0
+    if book.position == 0:
+        return 0
+    for track in tracks(book):
+        if track.id == book.position:
+            if include_current:
+                progress += int(track.position / 1000000000)
+            return progress
+
+        progress += track.length
+
+    return progress
+
+def get_book_remaining(book, include_current=True):
+    """
+    Get the remaining time of a book in seconds.
+    :param book:
+    :param include_current: Include the progress of the current track
+    :return: remaining time for the book
+    """
+    remaining = 0
+    passed_current = False
+    if book.position == 0:
+        return get_book_duration(book)
+    for track in tracks(book):
+        if passed_current:
+            remaining += track.length
+        
+        if track.id == book.position:
+            passed_current = True
+            if include_current:
+                remaining += int(track.position / 1000000000)
+        
+    return remaining

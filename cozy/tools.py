@@ -2,6 +2,20 @@ import time
 import threading
 import logging as log
 import platform
+import os
+from gi.repository import GLib, Gio
+
+def get_cache_dir():
+    """
+    Creates the cache dir if it doesn't exist
+    :return: The path to the own cache dir
+    """
+    cache_dir = os.path.join(GLib.get_user_cache_dir(), "cozy")
+
+    if not os.path.exists(cache_dir):
+        os.makedirs(cache_dir)
+
+    return cache_dir
 
 def shorten_string(string, length):
     """
@@ -21,6 +35,13 @@ def is_elementary():
             return True
         else:
             return False
+
+
+settings = Gio.Settings.new("com.github.geigi.cozy")
+def get_glib_settings():
+    global settings
+    return settings
+
 
 # From https://stackoverflow.com/questions/474528/what-is-the-best-way-to-repeatedly-execute-a-function-every-x-seconds-in-python
 class RepeatedTimer(object):
@@ -64,3 +85,31 @@ class RepeatedTimer(object):
             self._timer.cancel()
             self._timer = None
         self.is_running = False
+
+
+def seconds_to_str(seconds, include_seconds=True):
+    """
+    Converts seconds to a string with the following apperance:
+    hh:mm:ss
+
+    :param seconds: The seconds as float
+    """
+    m, s = divmod(seconds, 60)
+    h, m = divmod(m, 60)
+
+    if include_seconds:
+        if (h > 0):
+            result = "%d:%02d:%02d" % (h, m, s)
+        elif (m > 0):
+            result = "%02d:%02d" % (m, s)
+        else:
+            result = "00:%02d" % (s)
+    else:
+        if (h > 0):
+            result = "%d:%02d" % (h, m)
+        elif (m > 0):
+            result = "00:%02d" % (m)
+        else:
+            result = "00:00"
+
+    return result

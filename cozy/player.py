@@ -121,7 +121,8 @@ def get_current_duration_ui():
     :return m: minutes
     :return s: seconds
     """
-    s, ns = divmod(get_current_duration(), 1000000000)
+    global __speed
+    s, ns = divmod(get_current_duration() / __speed, 1000000000)
     m, s = divmod(s, 60)
     return m, s
 
@@ -239,8 +240,9 @@ def prev_track():
     save_current_track_position()
 
     if previous is not None:
-        save_current_book_position(previous)
         play_pause(previous)
+        save_current_track_position(track=current, pos=0)
+        save_current_book_position(previous)
     else:
         first_track = __current_track
         __player.set_state(Gst.State.NULL)
@@ -266,9 +268,10 @@ def rewind(seconds):
     duration = get_current_duration()
     seek = duration - (seconds * 1000000000)
     if seek < 0:
-        # TODO: Go back to previous track
-        seek = 0
-    __player.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, seek)
+        prev_track()
+        seek = get_current_track().length * 1000000000 + seek
+    __player.seek(__speed, Gst.Format.TIME, Gst.SeekFlags.FLUSH,
+                  Gst.SeekType.SET, seek, Gst.SeekType.NONE, 0)
     save_current_track_position(seek)
 
 
@@ -426,14 +429,18 @@ def save_current_book_position(track, pos=None):
         db.Book.id == track.book.id).execute()
 
 
-def save_current_track_position(pos=None):
+def save_current_track_position(pos=None, track=None):
     """
     Saves the current track position to the db.
     """
     if pos is None:
         pos = get_current_duration()
+
+    if track is None:
+        track = get_current_track()
+    
     db.Track.update(position=pos).where(
-        db.Track.id == get_current_track().id).execute()
+        db.Track.id == track.id).execute()
 
 
 def emit_event(event, message=None):

@@ -9,300 +9,299 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-12 17:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: abuyop <abuyop@gmail.com>, 2018\n"
-"Language-Team: Malay (Malaysia) (https://www.transifex.com/geigi/teams/78138/ms_MY/)\n"
+"Last-Translator: Oleg Krivorot <krivorot.oleg@gmail.com>, 2018\n"
+"Language-Team: Ukrainian (https://www.transifex.com/geigi/teams/78138/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ms_MY\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: cozy/book_element.py:64 cozy/search_results.py:124
 msgid "Play this book"
-msgstr "Baca buku ini"
+msgstr "Слухати цю аудіокнигу"
 
 #: cozy/book_element.py:188
 msgid "Open book overview"
-msgstr "Buka gambaran keseluruhan buku"
+msgstr "Відкрити огляд книги"
 
 #: cozy/book_element.py:407
 msgid "Play this part"
-msgstr "Baca bahagian ini"
+msgstr "Слухати цю частину"
 
 #: cozy/file_not_found_dialog.py:64
 msgid "All files"
-msgstr "Semua fail"
+msgstr "Всі файли"
 
 #: cozy/search_results.py:72
 msgid "Jump to author "
-msgstr "Lompat ke pengarang"
+msgstr "Перейти до автора "
 
 #: cozy/search_results.py:75
 msgid "Jump to reader "
-msgstr "Lompat ke pembaca"
+msgstr "Перейти до диктора "
 
 #: cozy/importer.py:279
 msgid "Unknown Author"
-msgstr "Pengarang Tidak Diketahui"
+msgstr "Невідомий автор"
 
 #: cozy/importer.py:281
 msgid "Unknown Reader"
-msgstr "Pembaca Tidak Diketahui"
+msgstr "Невідомий диктор"
 
 #: cozy/ui.py:430 cozy/ui.py:756 data/ui/timer_popover.ui:86
 msgid "min"
-msgstr "min"
+msgstr "хв."
 
 #: cozy/ui.py:605
 msgid "Importing Audiobooks"
-msgstr "Mengimport Buku Audio"
+msgstr "Імпорт аудіокниг"
 
 #: cozy/ui.py:667 cozy/ui.py:671 cozy/ui.py:1319 cozy/ui.py:1328
 msgid "All"
-msgstr "Semua"
+msgstr "Всі"
 
 #: cozy/ui.py:668 cozy/ui.py:672
 msgid "Display all books"
-msgstr "Papar semua buku"
+msgstr "Відобразити всі книжки"
 
 #: cozy/ui.py:902
 msgid "Changing audio book location..."
-msgstr "Mengubah lokasi buku audio..."
+msgstr "Вибір каталога аудіокниг..."
 
 #: data/ui/main_window.ui:67
 msgid "Select by author"
-msgstr "Pilih mengikut pengarang"
+msgstr "Сортувати по автору"
 
 #: data/ui/main_window.ui:76
 msgid "<big>Author</big>"
-msgstr "<big>Pengarang</big>"
+msgstr "<big>Автор</big>"
 
 #: data/ui/main_window.ui:85
 msgid "Author filter button"
-msgstr "Butang tapis pengarang"
+msgstr "Кнопка фільтрації по автору"
 
 #: data/ui/main_window.ui:86
 msgid "Filter books by author"
-msgstr "Tapis buku mengikut pengarang"
+msgstr "Фільтрувати книжки по автору"
 
 #: data/ui/main_window.ui:106
 msgid "Select by reader"
-msgstr "Pilih mengikut pembaca"
+msgstr "Сортувати по диктору"
 
 #: data/ui/main_window.ui:114
 msgid "<big>Reader</big>"
-msgstr "<big>Pembaca</big>"
+msgstr "<big>Диктор</big>"
 
 #: data/ui/main_window.ui:123
 msgid "Reader filter button"
-msgstr "Butang penapis pembaca"
+msgstr "Кнопка фільтрації по диктору"
 
 #: data/ui/main_window.ui:124
 msgid "Filter books by reader"
-msgstr "Tapis buku mengikut pembaca"
+msgstr "Фільтрувати книжки по диктору"
 
 #: data/ui/main_window.ui:178
 msgid "List of authors"
-msgstr "Senarai pengarang"
+msgstr "Список авторів"
 
 #: data/ui/main_window.ui:194 data/ui/search_popover.ui:107
 msgid "Author"
-msgstr "Pengarang"
+msgstr "Автор"
 
 #: data/ui/main_window.ui:212
 msgid "List of readers"
-msgstr "Senarai pembaca"
+msgstr "Список дикторів"
 
 #: data/ui/main_window.ui:228 data/ui/search_popover.ui:201
 msgid "Reader"
-msgstr "Pembaca"
+msgstr "Диктор"
 
 #: data/ui/main_window.ui:275
 msgid "List of books"
-msgstr "Senarai buku"
+msgstr "Список книжок"
 
 #: data/ui/main_window.ui:309
 msgid "Importing your audiobooks..."
-msgstr "Mengimport buku audio anda..."
+msgstr "Імпорт аудіокниг..."
 
 #: data/ui/main_window.ui:360
 msgid "Import your Audiobooks"
-msgstr "Import Buku Audio anda"
+msgstr "Імпорт аудіокниг"
 
 #: data/ui/main_window.ui:376
 msgid ""
 "Cozy automatically imports your audiobooks in one directory - your library"
 msgstr ""
-"Cozy mengimport secara automatik buku audio anda ke dalam satu direktori - "
-"pustaka anda"
+"Cozy аавтоматично імпортує аудіокниги з зазначеного каталога в бібліотеку"
 
 #: data/ui/main_window.ui:416
 msgid "Drag & Drop"
-msgstr "Seret & Lepas"
+msgstr "Drag & Drop"
 
 #: data/ui/main_window.ui:432
 msgid ""
 "Drag your audiobooks into cozy and the will be automatically imported to "
 "your library"
 msgstr ""
-"Seret buku audio anda ke dalam cozy dan akan diimport secara automatik ke "
-"dalam pustaka anda"
+"Перетягніть ваші аудіокниги в Cozy і вони будуть автоматично імпортовані в "
+"бібліотеку"
 
 #: data/ui/main_window.ui:492
 msgid "Change Audiobooks Folder"
-msgstr "Ubah Folder Buku Audio"
+msgstr "Змінити каталог аудіокниг"
 
 #: data/ui/main_window.ui:508
 msgid "Load audiobooks from a folder, network drive or an external disk"
-msgstr "Muat buku audio dari satu folder, pemacu rangkaian atau cakera luar"
+msgstr "Завантажити аудіокниги з папки, мережевого або зовнішнього диска"
 
 #: data/ui/main_window.ui:537
 msgid "Location of your audiobooks"
-msgstr "Lokasi buku audio anda"
+msgstr "Розташування аудіокниг"
 
 #: data/ui/main_window.ui:573
 msgid "Auto scan switch"
-msgstr "Tukaran auto imbas"
+msgstr "Перемикач автосканування"
 
 #: data/ui/main_window.ui:574 data/ui/main_window.ui:589
 msgid "Automatically import new audiobooks on startup"
-msgstr "Import secara automatik buku audio ketika permulaan"
+msgstr "Автоматично імпортувати нові аудіокниги при запуску програми"
 
 #: data/ui/main_window.ui:642
 msgid "Rewind 30 seconds"
-msgstr "Mandir 30 saat"
+msgstr "Назад на 30 секунд"
 
 #: data/ui/main_window.ui:650
 msgid "Rewind button"
-msgstr "Butang mandir"
+msgstr "Кнопка перемотування"
 
 #: data/ui/main_window.ui:651
 msgid "Jump back 30 seconds"
-msgstr "Lompat balik 30 saat"
+msgstr "Перейти назад 30 секунд"
 
 #: data/ui/main_window.ui:668
 msgid "Start playback"
-msgstr "Mula main balik"
+msgstr "Почати програвання"
 
 #: data/ui/main_window.ui:676
 msgid "Play/Pause Button"
-msgstr "Butang Main/Jeda"
+msgstr "Кнопка прогр./паузи"
 
 #: data/ui/main_window.ui:677
 msgid "Start or pause the playback"
-msgstr "Mula atau jeda main balik"
+msgstr "Запуск або призупинення програвання"
 
 #: data/ui/main_window.ui:694
 msgid "Volume control"
-msgstr "Kawalan suara"
+msgstr "Регулятор гучності"
 
 #: data/ui/main_window.ui:771
 msgid "Currently playing"
-msgstr "Kini dimainkan"
+msgstr "Зараз програється"
 
 #: data/ui/main_window.ui:789
 msgid "Booktitle"
-msgstr "Tajukbuku"
+msgstr "Назва аудіокниги"
 
 #: data/ui/main_window.ui:790
 msgid "Title of currently playing book"
-msgstr "Tajuk buku yang sedang dimainkan"
+msgstr "Назва поточної аудіокниги"
 
 #: data/ui/main_window.ui:815
 msgid "Part name"
-msgstr "Nama bahagian"
+msgstr "Назва частини"
 
 #: data/ui/main_window.ui:816
 msgid "Title of the currently playing part"
-msgstr "Tajuk bahagian yang sedang dimainkan"
+msgstr "Назва поточної частини"
 
 #: data/ui/main_window.ui:858
 msgid "Elapsed time"
-msgstr "Masa berlalu"
+msgstr "Пройдений час"
 
 #: data/ui/main_window.ui:866
 msgid "Time elapsed"
-msgstr "Masa berlalu"
+msgstr "Пройшло часу"
 
 #: data/ui/main_window.ui:867
 msgid "Elapsed time of current part"
-msgstr "Masa berlalu bagi bahagian semasa"
+msgstr "Час, що минув для поточної частини"
 
 #: data/ui/main_window.ui:882
 msgid "Scrubb through current part"
-msgstr "Ganyah menerusi bahagian semasa"
+msgstr "Прокрутити поточну частину"
 
 #: data/ui/main_window.ui:888
 msgid "Position slider"
-msgstr "Lungsur kedudukan"
+msgstr "Повзунок положення"
 
 #: data/ui/main_window.ui:889
 msgid "Position of the current part in seconds"
-msgstr "Kedudukan bahagian semasa dalam saat"
+msgstr "Положення поточної частини в секундах"
 
 #: data/ui/main_window.ui:907
 msgid "Remaining time"
-msgstr "Masa berbaki"
+msgstr "Час, що залишився"
 
 #: data/ui/main_window.ui:915
 msgid "Time remaining"
-msgstr "Masa berbaki"
+msgstr "Залишилось"
 
 #: data/ui/main_window.ui:916
 msgid "Remaining time of current part"
-msgstr "Masa berbaki bagi bahagian semasa"
+msgstr "Час, що залишився для поточної частини"
 
 #: data/ui/main_window.ui:992
 msgid "Working..."
-msgstr "Bekerja..."
+msgstr "Обробка…"
 
 #: data/ui/main_window.ui:997
 msgid "Currently working"
-msgstr "Kini dijalankan"
+msgstr "В даний момент працює"
 
 #: data/ui/main_window.ui:1012
 msgid "Playback speed"
-msgstr "Kelajuan main balik"
+msgstr "Швидкість відтворення"
 
 #: data/ui/main_window.ui:1033
 msgid "Sleep timer"
-msgstr "Pemasa tidur"
+msgstr "Таймер сну"
 
 #: data/ui/main_window.ui:1044
 msgid "Timer menu button"
-msgstr "Butang menu pemasa"
+msgstr "Кнопка меню таймера"
 
 #: data/ui/main_window.ui:1045
 msgid "Open the sleep timer popover"
-msgstr "Buka tetingkap timbul pemasa tidur"
+msgstr "Відкрити вікно таймера сну"
 
 #: data/ui/main_window.ui:1061
 msgid "Search your library"
-msgstr "Gelintar pustaka anda"
+msgstr "Пошук у вашій аудіобібліотеці"
 
 #: data/ui/main_window.ui:1072
 msgid "Search menu button"
-msgstr "Butang menu gelintar"
+msgstr "Кнопка меню пошуку"
 
 #: data/ui/main_window.ui:1073
 msgid "Open the search popover"
-msgstr "Buka tetingkap timbul gelintar"
+msgstr "Відкрийте пошуковий запит"
 
 #: data/ui/main_window.ui:1087
 msgid "Options"
-msgstr "Pilihan"
+msgstr "Налаштування"
 
 #: data/ui/main_window.ui:1098
 msgid "Options menu button"
-msgstr "Butang menu pilihan"
+msgstr "Кнопка меню налаштувань"
 
 #: data/ui/main_window.ui:1099
 msgid "Open the options popover"
-msgstr "Buka tetingkap menu pilihan"
+msgstr "Відкрити вікно налаштувань"
 
 #: data/ui/about.ui:11
 msgid "Support me on Patreon: https://www.patreon.com/geigi"
-msgstr "Sokong saya dengan menjadi penaung: https://www.patreon.com/geigi"
+msgstr "Підтримайте мене в Patreon: https://www.patreon.com/geigi"
 
 #: data/ui/about.ui:13
 msgid "GitHub"
@@ -310,47 +309,47 @@ msgstr "GitHub"
 
 #: data/ui/app_menu.ui:7
 msgid "_Scan Directory"
-msgstr "_Imbas Direktori"
+msgstr "С_канувати каталог"
 
 #: data/ui/app_menu.ui:13
 msgid "_Preferences"
-msgstr "_Keutamaan"
+msgstr "_Параметри"
 
 #: data/ui/app_menu.ui:19
 msgid "_Help"
-msgstr "_Bantuan"
+msgstr "_Довідка"
 
 #: data/ui/app_menu.ui:23
 msgid "_About"
-msgstr "_Perihal"
+msgstr "П_ро програму"
 
 #: data/ui/app_menu.ui:27
 msgid "_Quit"
-msgstr "_Keluar"
+msgstr "_Вихід"
 
 #: data/ui/file_not_found.ui:19
 msgid "Cancel"
-msgstr "Batal"
+msgstr "Відміна"
 
 #: data/ui/file_not_found.ui:32
 msgid "Locate"
-msgstr "Cari"
+msgstr "Знайти"
 
 #: data/ui/file_not_found.ui:86
 msgid "File not found"
-msgstr "Fail tidak ditemui"
+msgstr "Файл не знайдено"
 
 #: data/ui/file_not_found.ui:119
 msgid "This file could not be found. Do you want to locate it manually?"
-msgstr "Fail ini tidak ditemui. Anda mahu cari ia secara manual?"
+msgstr "Файл не знайдено. Ви хочете знайти його самостійно?"
 
 #: data/ui/import_failed.ui:23
 msgid "Ok"
-msgstr "Ok"
+msgstr "Так"
 
 #: data/ui/import_failed.ui:77
 msgid "Some files could not be imported"
-msgstr "Sesetengah fail tidak dapat diimport"
+msgstr "Деякі файли не можуть бути імпортовані"
 
 #: data/ui/import_failed.ui:130
 msgid ""
@@ -359,10 +358,10 @@ msgid ""
 "- The file(s) are no valid audio files\n"
 "- The file(s) are corrupt"
 msgstr ""
-"Ia berlaku atas beberapa sebab:\n"
-"- Format audio tidak disokong\n"
-"- Fail(s) bukan fail audio yang sah\n"
-"- Fail(s) telah rosak"
+"Це може бути з кількох причин:\n"
+"- Формат аудіо не підтримуються\n"
+"- Файл(и) не є допустимими аудіофайлами\n"
+"- Файл(и) пошкоджені"
 
 #: data/ui/settings.ui:26
 msgid "Titlebar"
@@ -374,35 +373,35 @@ msgstr ""
 
 #: data/ui/settings.ui:84
 msgid "Appearance"
-msgstr "Penampilan"
+msgstr "Зовнішній вигляд"
 
 #: data/ui/settings.ui:99
 msgid "Suspend system on timer"
-msgstr "Tangguh sistem dengan pemasa"
+msgstr "Вимкнення системи по таймеру"
 
 #: data/ui/settings.ui:135
 msgid "Replay 30 seconds"
-msgstr "Main semula 30 saat"
+msgstr "Автоповернення на 30 секунд"
 
 #: data/ui/settings.ui:170
 msgid "Automatic media scan"
-msgstr "Imbas media secara automatik"
+msgstr "Автоматичне сканування медіа"
 
 #: data/ui/settings.ui:201
 msgid "Behaviour"
-msgstr "Kelakuan"
+msgstr "Поведінка"
 
 #: data/ui/settings.ui:217
 msgid "Follow symlinks"
-msgstr "Ikut pautan simbolik"
+msgstr "Слідувати за символічними посиланнями"
 
 #: data/ui/settings.ui:255 data/ui/settings.ui:270
 msgid "Audio books location"
-msgstr "Lokasi buku audio"
+msgstr "Розташування аудіокниг"
 
 #: data/ui/settings.ui:292
 msgid "Files"
-msgstr "Fail"
+msgstr "Файли"
 
 #: data/ui/settings.ui:309
 msgid "Use crc32 checksum instead of last modified timestamp on folder scan"
@@ -414,59 +413,59 @@ msgstr ""
 
 #: data/ui/search_popover.ui:24
 msgid "Search"
-msgstr "Gelintar"
+msgstr "Пошук"
 
 #: data/ui/search_popover.ui:36
 msgid "Search box"
-msgstr "Kotak gelintar"
+msgstr "Пошукова строка"
 
 #: data/ui/search_popover.ui:37
 msgid "Search your audiobook library"
-msgstr "Gelintar pustaka buku audio anda"
+msgstr "Пошук у вашій аудіобібліотеці"
 
 #: data/ui/search_popover.ui:67
 msgid "Which book are you looking for?"
-msgstr "Buku apakah yang mahu dicari?"
+msgstr "Яку книгу ви шукайте?"
 
 #: data/ui/search_popover.ui:154
 msgid "Book"
-msgstr "Buku"
+msgstr "Книга"
 
 #: data/ui/search_popover.ui:248
 msgid "Part"
-msgstr "Bahagian"
+msgstr "Частина"
 
 #: data/ui/search_popover.ui:295
 msgid "Nothing found :("
-msgstr "Tiada apa-apa ditemui :("
+msgstr "Нічого не знайдено :("
 
 #: data/ui/timer_popover.ui:32
 msgid "Toggle the timer on/off"
-msgstr "Togol pemasa hidup/mati"
+msgstr "Вкл/викл таймера"
 
 #: data/ui/timer_popover.ui:36
 msgid "Timer toggle button"
-msgstr "Butang togol pemasa"
+msgstr "Кнопка перемикання таймера"
 
 #: data/ui/timer_popover.ui:37
 msgid "Switch the sleep timer on or off"
-msgstr "Hidup atau matikan pemasa tidur"
+msgstr "В даний момент працює"
 
 #: data/ui/timer_popover.ui:52 data/ui/timer_popover.ui:80
 msgid "Timer duration"
-msgstr "Tempoh pemasa"
+msgstr "Тривалість таймера"
 
 #: data/ui/timer_popover.ui:65
 msgid "Timer duration slider"
-msgstr "Lungsur tempoh pemasa"
+msgstr "Повзунок тривалості таймера"
 
 #: data/ui/timer_popover.ui:66 data/ui/timer_popover.ui:93
 msgid "Set the sleep timer duration in minutes"
-msgstr "Tetapkan tempoh pemasa tidur dalam minit"
+msgstr "Установка тривалості таймера сну в хвилинах"
 
 #: data/ui/timer_popover.ui:92
 msgid "Timer duration spin button"
-msgstr "Butang pusing tempoh pemasa"
+msgstr "Кнопка включення таймера"
 
 #: data/ui/book_progress_element.ui:47
 msgid "remaining"

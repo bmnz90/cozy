@@ -78,9 +78,11 @@ XDG_DATA_DIRS=desired_installation_directory/share:/usr/share PYTHONPATH=desired
 
 ## A big thanks
 To the contributors on GitHub:
+- oleg-krv 
 - AsavarTzeth
 - worldofpeace
 - camellan
+- jnbr
 
 The translators:
 - camellan
@@ -97,6 +99,7 @@ The translators:
 - nvivant
 - Foxyriot
 - mardojai
+- trampover
 
 To nedrichards for the Flatpak.
 
