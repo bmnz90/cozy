@@ -25,6 +25,7 @@ import os
 import signal
 import sys
 import traceback
+import platform
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -48,18 +49,16 @@ class Application(Gtk.Application):
 
         GObject.threads_init()
         listen()
-
         Gtk.Application.__init__(self, application_id='com.github.geigi.cozy')
-
         GLib.setenv("PULSE_PROP_media.role", "music", True)
 
         import gettext
-
         locale.bindtextdomain('cozy', localedir)
         locale.textdomain('cozy')
         gettext.install('cozy', localedir)
 
     def do_startup(self):
+        log.info(platform.dist())
         log.info("Starting up cozy " + version)
         self.ui = CozyUI(pkgdatadir, self, version)
         init_db()

@@ -213,6 +213,7 @@ def next_track():
 
     if next_track is not None:
         save_current_book_position(next_track)
+        save_current_track_position(0, next_track)
         play_pause(next_track)
     else:
         stop()
@@ -347,6 +348,7 @@ def set_playback_speed(speed):
     global __playback_speed_timer_running
 
     __speed = speed
+    save_current_playback_speed()
     if __playback_speed_timer_running:
         return
 
@@ -385,14 +387,13 @@ def load_file(track):
     emit_event("stop")
     __player.set_state(Gst.State.NULL)
 
-
     init()
 
     __player.set_property("uri", "file://" + track.file)
     __player.set_state(Gst.State.PAUSED)
     save_current_book_position(__current_track)
     db.Settings.update(last_played_book=__current_track.book).execute()
-    emit_event("track-changed")
+    emit_event("track-changed", track)
 
 
 def load_last_book():
@@ -415,7 +416,22 @@ def load_last_book():
                 __player.set_property("uri", "file://" + last_track.file)
                 __player.set_state(Gst.State.PAUSED)
                 __current_track = last_track
-                emit_event("track-changed")
+                emit_event("track-changed", last_track)
+
+
+def save_current_playback_speed(book=None, speed=None):
+    """
+    Save the current or given playback speed to the db.
+    :param book: Optional: Save for the given book
+    :param speed: Optional: Save the given speed
+    """
+    global __speed
+    if book is None:
+        book = get_current_track().book
+    if speed is None:
+        speed = __speed
+
+    db.Book.update(playback_speed=speed).where(db.Book.id == book.id).execute()
 
 
 def save_current_book_position(track, pos=None):
