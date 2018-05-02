@@ -23,6 +23,7 @@ import cozy.db as db
 import cozy.importer as importer
 import cozy.player as player
 import cozy.tools as tools
+import cozy.fs_watcher as fs_watcher
 
 import os
 
@@ -248,6 +249,7 @@ class CozyUI:
         self.search = Search(self)
         self.settings = Settings(self)
         self.book_overview = BookOverview(self)
+        self.fs_watcher = fs_watcher.Watcher()
 
         self.titlebar.activate()
 
@@ -660,6 +662,8 @@ class CozyUI:
         player.dispose()
 
         db.close()
+
+        self.fs_watcher.stop_notifier()
 
         log.info("Closing app.")
         self.app.quit()

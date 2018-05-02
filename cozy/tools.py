@@ -214,3 +214,10 @@ def past_date_to_human_readable(unix_time):
         return "1 " + _("year") + " " + _("ago")
     else:
         return str(years) + " " + _("years") + " " + _("ago")
+
+# from https://stackoverflow.com/questions/4453602/how-to-find-the-mountpoint-a-file-resides-on
+def find_mount_point(path):
+    path = os.path.abspath(path)
+    while not os.path.ismount(path):
+        path = os.path.dirname(path)
+    return path

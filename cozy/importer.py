@@ -68,9 +68,17 @@ def update_database(ui):
         if os.path.exists(location.path):
             paths.append(location.path)
 
+    import_paths(paths)
+
     # clean artwork cache
     artwork_cache.delete_artwork_cache()
 
+
+def import_paths(paths):
+    """
+    Imports the given paths
+    Also removes entries from the db that are no longer existent.
+    """
     # are UI buttons currently blocked?
     player_blocked, importer_blocked = ui.get_ui_buttons_blocked()
 
