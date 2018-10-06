@@ -14,6 +14,7 @@ from mutagen.flac import FLAC
 from mutagen.mp3 import MP3
 from mutagen.mp4 import MP4
 from mutagen.oggvorbis import OggVorbis
+from mutagen.oggopus import OggOpus
 from gi.repository import Gdk, GLib
 
 import cozy.db as db
@@ -72,7 +73,7 @@ def update_database(ui):
     for path in paths:
         for directory, subdirectories, files in os.walk(path):
             for file in files:
-                if file.lower().endswith(('.mp3', '.ogg', '.flac', '.m4a')):
+                if file.lower().endswith(('.mp3', '.ogg', '.flac', '.m4a', '.opus')):
                     path = os.path.join(directory, file)
 
                     imported = True
@@ -207,6 +208,24 @@ def import_file(file, directory, path, update=False, crc=None):
         except Exception as e:
             log.warning("Track " + track.path +
                         " is not a valid OGG file. Skipping...")
+            return False
+
+        disk = int(__get_common_disk_number(track))
+        length = float(__get_common_track_length(track))
+        cover = __get_ogg_cover(track)
+        author = __get_common_tag(track, "composer")
+        reader = __get_common_tag(track, "artist")
+        book_name = __get_common_tag(track, "album")
+        track_name = __get_common_tag(track, "title")
+        
+    ### Opus ###
+    elif media_type is "opus":
+        log.debug("Importing ogg " + track.path)
+        try:
+            track.mutagen = OggOpus(path)
+        except Exception as e:
+            log.warning("Track " + track.path +
+                        " is not a valid Opus file. Skipping...")
             return False
 
         disk = int(__get_common_disk_number(track))
